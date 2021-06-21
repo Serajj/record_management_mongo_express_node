@@ -1,0 +1,554 @@
+<%- include('./includes/head'); -%>
+
+    <div class="container-xl">
+
+        <div class="table-responsive">
+            <%if (!error=="" ) { %>
+                <div class="alert alert-danger">
+                    <strong>Error !</strong>
+                    <%=error %>
+                </div>
+                <% } %>
+
+                    <div class="alert alert-danger" id="errorbox" style="display: none;">
+                        <strong>Success!</strong> Indicates a successful or positive action.
+                    </div>
+
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h2>Manage <b>Records</b></h2>
+                                </div>
+                                <div class="col-sm-6">
+
+                                    <a href="/" class="btn btn-danger"><i class="material-icons">&#xE15C;</i>
+                                        <span>Cancel</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form class="needs-validation" action="/update" method="POST" novalidate>
+
+                            <input type="=text" name="id" value="<%= id %>" hidden />
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom01">Full name</label>
+                                    <input type="text" class="form-control" name="fullname" id="validationCustom01"
+                                        placeholder="Full name" value="<%=record.user_id.fullname %>" required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom02">Email</label>
+                                    <input type="email" class="form-control" name="email" id="validationCustom02"
+                                        placeholder="Email" value="<%=record.user_id.email %>" required>
+                                    <div class="invalid-feedback">
+                                        Please enter email!
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustomUsername">Phone</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                        </div>
+                                        <input type="number" class="form-control" id="validationCustomUsername"
+                                            placeholder="Mobile Number" name="mobile"
+                                            value="<%=record.user_id.mobile %>" aria-describedby="inputGroupPrepend"
+                                            required>
+                                        <div class="invalid-feedback">
+                                            Please enter mobile number.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <!-- <div class="col-md-4 mb-3">
+                                    <label for="validationCustom03">Image</label>
+                                    <input type="file" class="form-control" name="myimage" id="validationCustom03"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Please select image.
+                                    </div>
+                                </div> -->
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom04">DOB</label>
+                                    <input type="date" name="dob" value="<%=record.dob %>" class="form-control"
+                                        id="validationCustom04" required>
+                                    <div class="invalid-feedback">
+                                        Please provide date of birth.
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom05">Gender</label>
+                                    <div class="form-group m-2">
+
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" id="validationCustom05" class="form-check-input"
+                                                    name="gender" value="Female" required />
+                                                Female
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" id="validationCustom05" class="form-check-input"
+                                                    name="gender" value="Male" required />
+                                                Male
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" id="validationCustom05" class="form-check-input"
+                                                    name="gender" value="Other" required />
+                                                Other
+                                            </label>
+                                        </div>
+
+                                        <div class="invalid-feedback">
+                                            Please select gender.
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustom03">Password</label>
+                                    <input type="password" class="form-control" name="password" id="validationCustom03"
+                                        placeholder="Enter Password" value="<%=record.user_id.password %>" required>
+                                    <div class="invalid-feedback">
+                                        Please enter password.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustom04">Confirm Password</label>
+                                    <input type="password" name="cpassword" class="form-control" id="validationCustom04"
+                                        placeholder="Confirm Password" value="<%=record.user_id.password %>" required>
+                                    <div class="invalid-feedback">
+                                        cannot be empty
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+                                <h4>About</h4>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-4 mb-4">
+                                    <label for="validationCustom03">Qualification</label>
+                                    <input type="text" class="form-control" name="qualification" id="validationCustom03"
+                                        placeholder="Enter Qualification" value="<%=record.qualification %>" required>
+                                    <div class="invalid-feedback">
+                                        Please enter qualification.
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-row">
+                                <div class="col-md-8 mb-4">
+                                    <label for="validationCustom03">Skills</label><br>
+
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="Effective communication"
+                                            name="skills" id="inlineCheckbox1">
+                                        <label class="form-check-label" for="inlineCheckbox1">Effective
+                                            communication</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="Teamwork" name="skills"
+                                            id="inlineCheckbox2">
+                                        <label class="form-check-label" for="inlineCheckbox2">Teamwork</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="Responsibility"
+                                            name="skills" id="inlineCheckbox1">
+                                        <label class="form-check-label" for="inlineCheckbox1">Responsibility</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="Creativity" name="skills"
+                                            id="inlineCheckbox2">
+                                        <label class="form-check-label" for="inlineCheckbox2">Creativity</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="Problem-solving"
+                                            name="skills" id="inlineCheckbox1">
+                                        <label class="form-check-label" for="inlineCheckbox1">Problem-solving</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" value="Leadership" type="checkbox" name="skills"
+                                            id="inlineCheckbox2">
+                                        <label class="form-check-label" for="inlineCheckbox2">Leadership</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" value="Extroversion" type="checkbox"
+                                            name="skills" id="inlineCheckbox1">
+                                        <label class="form-check-label" for="inlineCheckbox1">Extroversion</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" value="People skills" type="checkbox"
+                                            name="skills" id="inlineCheckbox2">
+                                        <label class="form-check-label" for="inlineCheckbox2">People skills</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" value="Openness" type="checkbox" name="skills"
+                                            id="inlineCheckbox1">
+                                        <label class="form-check-label" for="inlineCheckbox1">Openness</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" value="Adaptability" type="checkbox"
+                                            name="skills" id="inlineCheckbox2">
+                                        <label class="form-check-label" for="inlineCheckbox2">Adaptability</label>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 mb-4">
+                                    <label for="validationCustom03">Address</label>
+                                    <textarea class="form-control" name="address" id="validationCustom03"
+                                        placeholder="Enter Address" required><%=record.address %></textarea>
+                                    <div class="invalid-feedback">
+                                        Please enter Address.
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-4 mb-4">
+                                    <label for="validationCustom03">Country</label>
+                                    <select name="country" class="countries form-control" id="countryId">
+                                        <option value="">Select Country</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please enter Country.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-4">
+                                    <label for="validationCustom03">State</label>
+                                    <select name="state" class="states form-control" id="stateId">
+                                        <option value="">Select State</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please enter states.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-4">
+                                    <label for="validationCustom03">City</label>
+                                    <select name="city" class="cities form-control" id="cityId">
+                                        <option value="">Select City</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please enter city.
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                    <label class="form-check-label" for="invalidCheck">
+                                        Agree to terms and conditions
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        You must agree before submitting.
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Update</button>
+                        </form>
+
+                        <script>
+                            // Example starter JavaScript for disabling form submissions if there are invalid fields
+                            (function () {
+                                'use strict';
+                                window.addEventListener('load', function () {
+                                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                    var forms = document.getElementsByClassName('needs-validation');
+                                    // Loop over them and prevent submission
+                                    var validation = Array.prototype.filter.call(forms, function (form) {
+                                        form.addEventListener('submit', function (event) {
+                                            if (form.checkValidity() === false) {
+                                                event.preventDefault();
+                                                event.stopPropagation();
+                                            }
+                                            form.classList.add('was-validated');
+                                        }, false);
+                                    });
+                                }, false);
+                            })();
+                        </script>
+
+                    </div>
+        </div>
+
+
+
+    </div>
+
+
+
+    <script>
+        function ajaxCall() {
+            this.send = function (data, url, method, success, type) {
+                type = type || 'json';
+                var successRes = function (data) {
+                    success(data);
+                }
+
+                var errorRes = function (e) {
+                    console.log(e);
+                }
+                jQuery.ajax({
+                    url: url,
+                    type: method,
+                    data: data,
+                    success: successRes,
+                    error: errorRes,
+                    dataType: type,
+                    timeout: 60000
+                });
+
+            }
+
+        }
+
+        function locationInfo() {
+            var rootUrl = "https://geodata.solutions/api/api.php";
+            //now check for set values
+            var addParams = '';
+            if (jQuery("#gds_appid").length > 0) {
+                addParams += '&appid=' + jQuery("#gds_appid").val();
+            }
+            if (jQuery("#gds_hash").length > 0) {
+                addParams += '&hash=' + jQuery("#gds_hash").val();
+            }
+
+            var call = new ajaxCall();
+
+            this.confCity = function (id) {
+                var url = rootUrl + '?type=confCity&countryId=' + jQuery('#countryId option:selected').attr('countryid') + '&stateId=' + jQuery('#stateId option:selected').attr('stateid') + '&cityId=' + id;
+                var method = "post";
+                var data = {};
+                call.send(data, url, method, function (data) {
+                });
+            };
+
+
+            this.getCities = function (id) {
+                jQuery(".cities option:gt(0)").remove();
+                var stateClasses = jQuery('#cityId').attr('class');
+
+                var cC = stateClasses.split(" ");
+                cC.shift();
+                var addClasses = '';
+                if (cC.length > 0) {
+                    acC = cC.join();
+                    addClasses = '&addClasses=' + encodeURIComponent(acC);
+                }
+                var url = rootUrl + '?type=getCities&countryId=' + jQuery('#countryId option:selected').attr('countryid') + '&stateId=' + id + addParams + addClasses;
+                var method = "post";
+                var data = {};
+                jQuery('.cities').find("option:eq(0)").html("Please wait..");
+                call.send(data, url, method, function (data) {
+                    jQuery('.cities').find("option:eq(0)").html("Select City");
+                    if (data.tp == 1) {
+                        var listlen = Object.keys(data['result']).length;
+
+                        if (listlen > 0) {
+                            jQuery.each(data['result'], function (key, val) {
+
+                                var option = jQuery('<option />');
+                                option.attr('value', val).text(val);
+                                jQuery('.cities').append(option);
+                            });
+                        }
+                        else {
+                            var usestate = jQuery('#stateId option:selected').val();
+                            var option = jQuery('<option />');
+                            option.attr('value', usestate).text(usestate);
+                            option.attr('selected', 'selected');
+                            jQuery('.cities').append(option);
+                        }
+
+                        jQuery(".cities").prop("disabled", false);
+                    }
+                    else {
+                        alert(data.msg);
+                    }
+                });
+            };
+
+            this.getStates = function (id) {
+                jQuery(".states option:gt(0)").remove();
+                jQuery(".cities option:gt(0)").remove();
+                //get additional fields
+                var stateClasses = jQuery('#stateId').attr('class');
+
+                var cC = stateClasses.split(" ");
+                cC.shift();
+                var addClasses = '';
+                if (cC.length > 0) {
+                    acC = cC.join();
+                    addClasses = '&addClasses=' + encodeURIComponent(acC);
+                }
+                var url = rootUrl + '?type=getStates&countryId=' + id + addParams + addClasses;
+                var method = "post";
+                var data = {};
+                jQuery('.states').find("option:eq(0)").html("Please wait..");
+                call.send(data, url, method, function (data) {
+                    jQuery('.states').find("option:eq(0)").html("Select State");
+                    if (data.tp == 1) {
+                        jQuery.each(data['result'], function (key, val) {
+                            var option = jQuery('<option />');
+                            option.attr('value', val).text(val);
+                            option.attr('stateid', key);
+                            jQuery('.states').append(option);
+                        });
+                        jQuery(".states").prop("disabled", false);
+                    }
+                    else {
+                        alert(data.msg);
+                    }
+                });
+            };
+
+            this.getCountries = function () {
+                //get additional fields
+                var countryClasses = jQuery('#countryId').attr('class');
+
+                var cC = countryClasses.split(" ");
+                cC.shift();
+                var addClasses = '';
+                if (cC.length > 0) {
+                    acC = cC.join();
+                    addClasses = '&addClasses=' + encodeURIComponent(acC);
+                }
+
+                var presel = false;
+                var iip = 'N';
+                jQuery.each(cC, function (index, value) {
+                    if (value.match("^presel-")) {
+                        presel = value.substring(7);
+
+                    }
+                    if (value.match("^presel-byi")) {
+                        var iip = 'Y';
+                    }
+                });
+
+
+                var url = rootUrl + '?type=getCountries' + addParams + addClasses;
+                var method = "post";
+                var data = {};
+                jQuery('.countries').find("option:eq(0)").html("Please wait..");
+                call.send(data, url, method, function (data) {
+                    jQuery('.countries').find("option:eq(0)").html("Select Country");
+
+                    if (data.tp == 1) {
+                        if (presel == 'byip') {
+                            presel = data['presel'];
+                            console.log('2 presel is set as ' + presel);
+                        }
+
+
+                        if (jQuery.inArray("group-continents", cC) > -1) {
+                            var $select = jQuery('.countries');
+                            console.log(data['result']);
+                            jQuery.each(data['result'], function (i, optgroups) {
+                                var $optgroup = jQuery("<optgroup>", { label: i });
+                                if (optgroups.length > 0) {
+                                    $optgroup.appendTo($select);
+                                }
+
+                                jQuery.each(optgroups, function (groupName, options) {
+                                    var coption = jQuery('<option />');
+                                    coption.attr('value', options.name).text(options.name);
+                                    coption.attr('countryid', options.id);
+                                    if (presel) {
+                                        if (presel.toUpperCase() == options.id) {
+                                            coption.attr('selected', 'selected');
+                                        }
+                                    }
+                                    coption.appendTo($optgroup);
+                                });
+                            });
+                        }
+                        else {
+                            jQuery.each(data['result'], function (key, val) {
+                                var option = jQuery('<option />');
+                                option.attr('value', val).text(val);
+                                option.attr('countryid', key);
+                                if (presel) {
+                                    if (presel.toUpperCase() == key) {
+                                        option.attr('selected', 'selected');
+                                    }
+                                }
+                                jQuery('.countries').append(option);
+                            });
+                        }
+                        if (presel) {
+                            jQuery('.countries').trigger('change');
+                        }
+                        jQuery(".countries").prop("disabled", false);
+                    }
+                    else {
+                        alert(data.msg);
+                    }
+                });
+            };
+
+        }
+
+        jQuery(function () {
+            var loc = new locationInfo();
+            loc.getCountries();
+            jQuery(".countries").on("change", function (ev) {
+                var countryId = jQuery("option:selected", this).attr('countryid');
+                if (countryId != '') {
+                    loc.getStates(countryId);
+                }
+                else {
+                    jQuery(".states option:gt(0)").remove();
+                }
+            });
+            jQuery(".states").on("change", function (ev) {
+                var stateId = jQuery("option:selected", this).attr('stateid');
+                if (stateId != '') {
+                    loc.getCities(stateId);
+                }
+                else {
+                    jQuery(".cities option:gt(0)").remove();
+                }
+            });
+
+            jQuery(".cities").on("change", function (ev) {
+                var cityId = jQuery("option:selected", this).val();
+                if (cityId != '') {
+                    loc.confCity(cityId);
+                }
+            });
+        });
+        console.log("Inside script tag");
+    </script>
+
+    <%- include('includes/footer'); -%>
